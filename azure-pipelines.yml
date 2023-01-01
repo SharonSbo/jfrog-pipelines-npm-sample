@@ -45,5 +45,5 @@ steps:
     comment: 'Promoting release candidate'
 #    sourceRepo: 'Dev1-local'
     includeDependencies: true
-    copy: false
+    copy: true
     dryRun: false
