@@ -34,3 +34,16 @@ steps:
     buildName: '$(Build.DefinitionName)'
     buildNumber: '$(Build.BuildNumber)'
     excludeEnvVars: '*password*;*psw*;*secret*;*key*;*token*;*auth*;'
+
+- task: JFrogBuildPromotion@1
+  inputs:
+    artifactoryConnection: 'artifactory v22'
+    buildName: '$(Build.DefinitionName)'
+    buildNumber: '$(Build.BuildNumber)'
+    targetRepo: 'npm-npm'
+    status: 'Released'
+    comment: 'Promoting release candidate'
+#    sourceRepo: 'Dev1-local'
+    includeDependencies: false
+    copy: false
+    dryRun: false
