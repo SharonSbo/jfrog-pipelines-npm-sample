@@ -26,4 +26,10 @@ steps:
     threads: '1'
     buildName: '$(Build.DefinitionName)'
     buildNumber: '$(Build.BuildNumber)'
-    
+
+
+- task: JFrogPublishBuildInfo@1
+  inputs:
+    buildName: '$(Build.DefinitionName)'
+    buildNumber: '$(Build.BuildNumber)'
+    excludeEnvVars: '*password*;*psw*;*secret*;*key*;*token*;*auth*;'
