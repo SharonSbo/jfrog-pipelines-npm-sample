@@ -17,6 +17,27 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+- task: JFrogGenericArtifacts@1
+  inputs:
+    command: 'Download'
+    connection: 'artifactory v22'
+    specSource: 'taskConfiguration'
+    fileSpec: |
+      {
+        "files": [
+          {
+            "pattern": "/npm-npm-local/.npm/npm-example/package.json",
+            "target": "./"
+          }
+        ]
+      }
+    failNoOp: true
+
+
+- script: |
+    # Print all files in the current working directory
+    ls -la
+
 - task: JFrogNpm@1
   inputs:
     command: 'install'
