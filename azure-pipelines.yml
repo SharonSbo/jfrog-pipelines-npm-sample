@@ -36,6 +36,7 @@ steps:
 
 - script: |
     # Print all files in the current working directory
+    pwd
     ls -la
 
 - task: JFrogNpm@1
