@@ -47,3 +47,9 @@ steps:
     includeDependencies: true
     copy: true
     dryRun: false
+- task: JFrogNpm@1
+  inputs:
+    command: 'pack and publish'
+    artifactoryConnection: 'artifactory v22'
+    targetRepo: 'npm-npm-local'
+    workingFolder: './'
