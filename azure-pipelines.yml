@@ -16,62 +16,9 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-
-- task: JFrogGenericArtifacts@1
-  inputs:
-    command: 'Download'
-    connection: 'artifactory v22'
-    specSource: 'taskConfiguration'
-    fileSpec: |
-      {
-        "files": [
-          {
-            "pattern": "/npm-npm-local/.npm/npm-example/package.json",
-            "target": "./"
-          }
-        ]
-      }
-    failNoOp: true
-
-
-- script: |
-    # Print all files in the current working directory
-    pwd
-    ls -la
-
-- task: JFrogNpm@1
+- task: ArtifactoryNpm@2
   inputs:
     command: 'install'
-    artifactoryConnection: 'artifactory v22'
+    artifactoryService: 'Artifactory'
     sourceRepo: 'npm-npm'
-    collectBuildInfo: true
-    threads: '1'
-    buildName: '$(Build.DefinitionName)'
-    buildNumber: '$(Build.BuildNumber)'
-
-
-- task: JFrogPublishBuildInfo@1
-  inputs:
-    artifactoryConnection: 'artifactory v22'
-    buildName: '$(Build.DefinitionName)'
-    buildNumber: '$(Build.BuildNumber)'
-    excludeEnvVars: '*password*;*psw*;*secret*;*key*;*token*;*auth*;'
-
-- task: JFrogBuildPromotion@1
-  inputs:
-    artifactoryConnection: 'artifactory v22'
-    buildName: '$(Build.DefinitionName)'
-    buildNumber: '$(Build.BuildNumber)'
-    targetRepo: 'npm-npm'
-    status: 'Released'
-    comment: 'Promoting release candidate'
-#    sourceRepo: 'Dev1-local'
-    includeDependencies: true
-    copy: true
-    dryRun: false
-- task: JFrogNpm@1
-  inputs:
-    command: 'pack and publish'
-    artifactoryConnection: 'artifactory v22'
-    targetRepo: 'npm-npm-local'
     workingFolder: './'
