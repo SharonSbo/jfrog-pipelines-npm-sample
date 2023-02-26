@@ -20,3 +20,10 @@ steps:
     artifactoryService: 'Artifactory'
     sourceRepo: 'npm-npm'
     arguments: './'
+
+- task: JFrogNpm@1
+  inputs:
+    command: 'install'
+    artifactoryConnection: 'Artifactory2'
+    sourceRepo: 'npm-npm'
+    arguments: './'
