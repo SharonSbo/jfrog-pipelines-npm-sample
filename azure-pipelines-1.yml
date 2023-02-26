@@ -14,12 +14,6 @@ steps:
   inputs:
     versionSpec: '19.x'
   displayName: 'Install Node.js'
-- task: ArtifactoryNpm@2
-  inputs:
-    command: 'install'
-    artifactoryService: 'Artifactory'
-    sourceRepo: 'npm-npm'
-    arguments: './'
 
 - task: JFrogNpm@1
   inputs:
@@ -27,3 +21,11 @@ steps:
     artifactoryConnection: 'Artifactory2'
     sourceRepo: 'npm-npm'
     arguments: './'
+
+- task: ArtifactoryNpm@2
+  inputs:
+    command: 'install'
+    artifactoryService: 'Artifactory'
+    sourceRepo: 'npm-npm'
+    arguments: './'
+
